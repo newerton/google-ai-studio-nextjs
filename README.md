@@ -15,7 +15,7 @@ This is a project that uses Google Gemini with the Next.js Framework to create w
 
 To install and set up the project locally, follow these steps:
 
-1. Clone the repository:
+Clone the repository:
 
 ```bash
 git clone https://github.com/newerton/google-ai-studio-nextjs.git
