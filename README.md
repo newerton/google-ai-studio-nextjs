@@ -1,3 +1,12 @@
+<h2 align="center">
+
+![Flutter Experience - 2024 - 1º Edition](https://raw.githubusercontent.com/newerton/images/main/academia-do-flutter/flutter-experience/flutter-experience-2024-1.png)
+
+  Google AI Studio Clone with Next.js
+
+</h2>
+
+
 # Google AI Studio Project with Next.js
 
 This is a project that uses Google Gemini with the Next.js Framework to create web applications.
