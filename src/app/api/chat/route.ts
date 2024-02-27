@@ -4,7 +4,7 @@ import { NextResponse } from 'next/server';
 
 import { env } from '@/libs/env';
 
-const genAI = new GoogleGenerativeAI(env.GOOGLE_GEMINI_API_KEY);
+const genAI = new GoogleGenerativeAI(env.GOOGLE_AI_STUDIO_API_KEY);
 
 export const runtime = 'edge';
 

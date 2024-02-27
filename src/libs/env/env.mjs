@@ -58,7 +58,7 @@ export const env = createEnv({
     /**
      * Google Gemini
      */
-    GOOGLE_GEMINI_API_KEY: z.string().trim().min(1),
+    GOOGLE_AI_STUDIO_API_KEY: z.string().trim().min(1),
   },
   /**
    * Shared between server and client
