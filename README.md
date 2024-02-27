@@ -1,6 +1,6 @@
 <h2 align="center">
 
-![Flutter Experience - 2024 - 1º Edition](https://raw.githubusercontent.com/newerton/images/main/google-ai-studio-nextjs/google-ai-studio-nextjs.png)
+![Google AI Studio Clone with Next.js](https://raw.githubusercontent.com/newerton/images/main/google-ai-studio-nextjs/google-ai-studio-nextjs.png)
 
   Google AI Studio Clone with Next.js
 
