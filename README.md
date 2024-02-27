@@ -6,9 +6,7 @@ Google AI Studio Clone with Next.js
 
 </h2>
 
-# Google AI Studio Project with Next.js
-
-This is a project that uses Google AI Studio with the Next.js Framework to create web applications.
+This is a project that uses Google AI Studio clone with the Next.js Framework to create web applications.
 
 ## Installation
 
