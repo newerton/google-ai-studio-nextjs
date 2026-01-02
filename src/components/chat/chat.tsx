@@ -1,8 +1,8 @@
 'use client';
 
+import { useChat } from '@ai-sdk/react';
 import { CloseButton, ScrollArea, TextInput } from '@mantine/core';
-import { useChat } from 'ai/react';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { TbReload } from 'react-icons/tb';
 
 import IconAiStudio from '../static/icons/ai-studio';
@@ -12,8 +12,10 @@ import { ChatMessage } from '.';
 export const Chat = () => {
   const viewport = useRef<HTMLDivElement>(null);
 
-  const { messages, input, handleInputChange, handleSubmit, isLoading, error } =
-    useChat();
+  const { messages, sendMessage, status, error } = useChat();
+  const [input, setInput] = useState('');
+
+  const isLoading = status === 'submitted' || status === 'streaming';
 
   console.log({ messages, isLoading, error });
   return (
@@ -26,13 +28,11 @@ export const Chat = () => {
         <div className="flex h-[calc(100%-102px)] flex-col">
           <ScrollArea w="100%" mb="lg" pr="lg" viewportRef={viewport}>
             <div className="flex flex-col gap-4">
-              {messages.map((message: any) => (
+              {messages.map((message) => (
                 <ChatMessage
                   viewport={viewport}
-                  message={
-                    message as { id?: string; role: string; content: string }
-                  }
-                  key={(message as any)?.id}
+                  message={message}
+                  key={message?.id}
                 />
               ))}
 
@@ -64,7 +64,13 @@ export const Chat = () => {
         </div>
 
         <form
-          onSubmit={handleSubmit}
+          onSubmit={(e) => {
+            e.preventDefault();
+            if (input.trim()) {
+              sendMessage({ text: input });
+              setInput('');
+            }
+          }}
           className="flex items-center justify-between gap-6"
         >
           <TextInput
@@ -75,7 +81,7 @@ export const Chat = () => {
                 'rounded-2xl bg-stone-200 border-stone-300 dark:bg-stone-700 dark:border-stone-600',
             }}
             value={input}
-            onChange={handleInputChange}
+            onChange={(e) => setInput(e.target.value)}
             autoFocus={true}
           />
           <CloseButton

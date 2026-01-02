@@ -3,20 +3,41 @@ import remarkGfm from 'remark-gfm';
 
 import { cn } from '@/libs/utils';
 
+type MessagePart = {
+  id?: string;
+  type: string;
+  text?: string;
+  url?: string;
+  filename?: string;
+  mediaType?: string;
+};
+
 type ChatMessageShape = {
   id?: string;
   role: string;
-  content: string;
+  // New UI shape in AI SDK v6
+  parts?: MessagePart[];
+  // Backwards-compat fallback
+  content?: string;
 };
 
 export const ChatMessage = ({
-  message: { role, content },
+  message,
   viewport,
 }: {
   message: ChatMessageShape;
   viewport: React.RefObject<HTMLDivElement | null>;
 }) => {
+  const { role } = message;
   const isAIMessage = role === 'assistant';
+
+  // Prefer the new `parts` API; fall back to legacy `content`
+  const content = message.parts
+    ? message.parts
+        .filter((p) => p.type === 'text' || p.type === 'reasoning')
+        .map((p) => p.text ?? '')
+        .join('')
+    : (message.content ?? '');
 
   viewport?.current?.scrollTo({
     top: viewport.current?.scrollHeight,
