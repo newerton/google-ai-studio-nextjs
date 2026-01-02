@@ -17,20 +17,22 @@ export const Chat = () => {
 
   console.log({ messages, isLoading, error });
   return (
-    <div className="p-6 h-full">
-      <div className="dark:bg-stone-800 p-4 rounded-2xl dark:border-stone-700 border-stone-300 border-[1px] border-solid h-full">
-        <div className="flex items-center justify-between mb-10">
+    <div className="h-full p-6">
+      <div className="h-full rounded-2xl border border-stone-300 border-solid p-4 dark:border-stone-700 dark:bg-stone-800">
+        <div className="mb-10 flex items-center justify-between">
           <div>Chat</div>
           <TbReload size={20} />
         </div>
-        <div className="flex flex-col h-[calc(100%-102px)]">
+        <div className="flex h-[calc(100%-102px)] flex-col">
           <ScrollArea w="100%" mb="lg" pr="lg" viewportRef={viewport}>
             <div className="flex flex-col gap-4">
               {messages.map((message: any) => (
                 <ChatMessage
                   viewport={viewport}
-                  message={message}
-                  key={message.id}
+                  message={
+                    message as { id?: string; role: string; content: string }
+                  }
+                  key={(message as any)?.id}
                 />
               ))}
 

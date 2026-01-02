@@ -1,13 +1,45 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@layer theme, base, components, utilities;
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/preflight.css" layer(base);
+@import "tailwindcss/utilities.css";
 
-html,
-body {
-  height: 100%;
+@custom-variant dark (&:is([data-mantine-color-scheme="dark"] *));
+
+@utility container {
+  width: 100%;
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: 2rem;
+  padding-left: 2rem;
+
+  @media (width >= 1400px) {
+    max-width: 1400px;
+  }
 }
 
-input:-webkit-autofill,
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
+  }
+
+  html {
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+/* input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 textarea:-webkit-autofill,
@@ -16,16 +48,9 @@ textarea:-webkit-autofill:focus,
 select:-webkit-autofill,
 select:-webkit-autofill:hover,
 select:-webkit-autofill:focus {
-  -webkit-box-shadow: 0 0 0px 1000px white inset;
+  -webkit-box-shadow: 0 0 0px 1000px transparent inset;
   transition: background-color 5000s ease-in-out 0s;
-}
-
-label:has(+div>input:-webkit-autofill),
-label:has(+div>div>input:-webkit-autofill) {
-  font-size: 0.75rem;
-  transform: translate(0, -0.625rem);
-  font-weight: 500;
-}
+} */
 
 @media print {
   .pagebreak {

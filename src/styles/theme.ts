@@ -1,6 +1,8 @@
 'use client';
 
-import { createTheme } from '@mantine/core';
+import { type MantineColorScheme, createTheme } from '@mantine/core';
+
+export const colorScheme: MantineColorScheme = 'auto';
 
 export const theme = createTheme({
   colors: {

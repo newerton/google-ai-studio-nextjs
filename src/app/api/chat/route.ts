@@ -1,5 +1,9 @@
 import { GoogleGenerativeAI } from '@google/generative-ai';
-import { GoogleGenerativeAIStream, Message, StreamingTextResponse } from 'ai';
+import {
+  GoogleGenerativeAIStream,
+  type Message,
+  StreamingTextResponse,
+} from 'ai';
 import { NextResponse } from 'next/server';
 
 import { env } from '@/libs/env';

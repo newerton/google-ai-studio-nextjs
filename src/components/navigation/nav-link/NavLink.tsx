@@ -1,6 +1,5 @@
 import { NavLink as NavLinkMantine } from '@mantine/core';
 import Link from 'next/link';
-import React, { Fragment } from 'react';
 import { FiPlusCircle } from 'react-icons/fi';
 import { LuLibrary } from 'react-icons/lu';
 import { MdAddToDrive, MdOutlineKey } from 'react-icons/md';
@@ -58,7 +57,7 @@ function renderNavLink(item: NavLinkItem, key: number) {
           const { icon: IconChild } = child;
           return (
             <NavLinkMantine
-              key={childKey}
+              key={childKey.toString()}
               label={child.label}
               leftSection={<IconChild size={18} />}
               href={child.href}
@@ -70,13 +69,24 @@ function renderNavLink(item: NavLinkItem, key: number) {
     );
   }
 
+  if (href) {
+    return (
+      <NavLinkMantine
+        key={key}
+        label={label}
+        leftSection={<Icon size={18} />}
+        href={href || '#'}
+        component={Link}
+      />
+    );
+  }
+
   return (
     <NavLinkMantine
       key={key}
       label={label}
       leftSection={<Icon size={18} />}
       href={href || '#'}
-      component={href ? Link : Fragment}
     />
   );
 }
