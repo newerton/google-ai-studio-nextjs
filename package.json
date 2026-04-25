@@ -45,7 +45,7 @@
     "cssnano": "^7.1.2",
     "husky": "^9.1.7",
     "lint-staged": "^16.2.7",
-    "postcss": "^8.5.6",
+    "postcss": "^8.5.10",
     "postcss-nesting": "^13.0.2",
     "postcss-preset-mantine": "^1.18.0",
     "tailwindcss": "^4.1.18",
